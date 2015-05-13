@@ -57,37 +57,36 @@ figure {margin: 0;}
 
 /*** SIZING WITH REM ***/
 			body {
-				background-color: #f3f4f3;
+				background-color: #f9f9f9;
 				font-family: 'helvetica';
 				width: 100%;
 			}
 
 
 			header{
-				margin-top: 70px;
-				width: 100%;
+				font-size: 19px;
+				padding: 70px 0px 0px 140px;
+				margin: 0;
 			}
 
 			header h1{
-				color: #6d6d6d;
-				font-size: 27px;
-				font-weight: 100;	
-				margin-bottom: 5px;
-				margin-left: 140px;		
+				color: #666666;	
+				font-weight: 100;
+				line-height: 32px;	
 				text-align: left;
 			}
 
 			h2{
-				color: #79a4b2;
-				font-weight: 100;
-				font-size: 18px;
+				color: black;
+				font-size: 16px;
 				text-align: left;
-				margin-bottom: 5px;
-				margin-top: 7px;
+				margin-bottom: 0px;
+				margin-left: 155px;	
+				margin-top: 40px;
 			}
 
 			h3{
-				color: #6d6d6d;
+				color: #666666;
 				font-size: 15px;
 				font-style: italic;
 				display: inline;
@@ -95,22 +94,23 @@ figure {margin: 0;}
 
 			p{
 				display: inline;
-				font-size: 15px;
 			}
 
-			.lista {
-			  	background-color: #f2f3f4;
-				border-radius: 10px;
-				color: #a5a5a5;
-				float: left;
+			.peliculas_lista{
+				color: #CECCCF;
 				font-size: 15px;
+				font-weight: 110;
 				line-height: 30px;
-				margin-top: 20px;
-				margin-left: 140px;				
-				overflow: hidden;
-				padding: 15px;
-				width: 60%;	
-			} 
+				list-style: none;
+				margin-left: 130px;	
+
+			}
+
+			a {
+		  		color: #a5a5a5;
+		  		text-decoration: none;
+			}
+
 
 .first{ margin-left: 0; padding-left: 0;}
 .last{ margin-right: 0; padding-right: 0;}

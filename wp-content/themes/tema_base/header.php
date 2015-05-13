@@ -13,13 +13,5 @@
 
   <body>
 	  <header>
-	        <h1>base <br> de datos <br> <em><span style="color:#79a4b2"> películas </span></em></h1>
+	        <h1>base<br>de datos<br><em><span style="color:black"> películas </span></em></h1>
 	  </header>
-
-	    <?php if(is_single()){ ?>
-	  <body>
-	        <div class='lista'>
-
-
-
-<?php } ?>

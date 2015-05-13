@@ -1,0 +1,76 @@
+INDEX
+
+	<?php get_header(); 
+
+		//$numero = $_GET['numerodeposts'];
+
+		?>
+	<!-- Insert content here -->
+		<?php
+
+			$args = array(
+				'post_type' => 'pelicula', //determinar el tipo de post
+				'posts_per_page' => -1 //ligado a la url -1 = All
+			);
+
+			$peliculas = get_posts($args);
+			//imprimir todos los posts
+			//echo '<pre>';
+			//print_r($peliculas); // imprimir un array de forma ordenada*/
+			//echo '</pre>';
+
+			//por cada iteracion imprime un objeto separado = UNA PELICULA
+/*			foreach($peliculas as $pelicula):
+				echo '<pre>';
+				print_r($pelicula); // imprimir un array de forma ordenada
+				echo '</pre>';
+*/
+				foreach($peliculas as $post): setup_postdata($post);
+				the_title();
+				//echo '<br />';
+
+			/*
+				$term_list = wp_get_post_terms($post->ID, 'director');
+				foreach ($term_list as $term) {
+					print_r($term);
+					echo $term->name; 
+					echo '<br />';	
+					echo $term->slug;
+					echo '<br />';
+					echo $term->parent;		
+				}
+			*/
+				$term_list = wp_get_post_terms($post->ID, 'mes_vista');
+				foreach ($term_list as $term) {
+					echo $term->name; 
+				}
+
+				$term_list = wp_get_post_terms($post->ID, 'año_vista');
+				foreach ($term_list as $term) {
+					echo $term->name; 
+				}
+
+				$term_list = wp_get_post_terms($post->ID, 'director');
+				foreach ($term_list as $term) {
+					echo $term->name; 
+				}
+
+				$term_list = wp_get_post_terms($post->ID, 'pais');
+				foreach ($term_list as $term) {
+					echo $term->name; 
+				}
+
+				$term_list = wp_get_post_terms($post->ID, 'año');
+				foreach ($term_list as $term) {
+					echo $term->name; 
+				}		
+
+				echo '<br /><br />';
+			
+			endforeach;
+
+
+		?>
+	
+	<?php get_sidebar(); ?>
+	<?php get_footer(); ?>

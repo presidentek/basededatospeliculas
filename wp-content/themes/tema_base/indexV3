@@ -1,0 +1,22 @@
+<?php get_header(); ?>
+
+<?php
+    $loop = new WP_Query( array( 'post_type' => 'pelicula', 'posts_per_page' => 5 ) );
+    if ( $loop->have_posts() ) :
+        while ( $loop->have_posts() ) : $loop->the_post(); ?>
+            <div class="lista">
+            	<p>
+	            	<h2> <?php echo the_terms ($post->ID, 'año_vista'); ?> </h2>
+	            	<?php echo the_terms ($post->ID, 'mes_vista'); ?>
+	            	<h3><?php echo get_the_title(); ?></h3>
+	            	<?php echo the_terms ($post->ID, 'director'); ?>
+					<?php echo the_terms ($post->ID, 'pais'); ?> .
+					( <?php echo the_terms ($post->ID, 'año'); ?> )
+	            </p>
+            </div>
+        <?php endwhile;
+    endif;
+?>
+	
+<?php get_sidebar(); ?>
+<?php get_footer(); ?>

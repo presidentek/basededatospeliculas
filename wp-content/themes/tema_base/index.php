@@ -1,58 +1,55 @@
-	<?php get_header(); 
-		?>
+<?php get_header(); ?>
 
-<div class="lista">
-	<p>
+<?php 
+	//extraer los terminos (años) de la taxonomia 'año_vista'
+	$terms = get_terms( 'año_vista', array(
+	    'order'   => 'DESC' // ??
+	) );
+?>
 
-	<?php
+<?php
+	// hacer un query por cada termino (= cada año)
+	foreach( $terms as $term ) {
+ 
+    // definir el query, post_type, numero de post, etc
+    $args = array(
+        'post_type' => 'pelicula',
+        'año_vista' => $term->slug,
+        'posts_per_page' => -1,
+    //     'tax_query' => array(
+    //     	array(	
+    //     		'taxonomy' => 'mes_vista',
+				// 'field'    => 'name',
+				
+    //     	)	
+    //     )
+    );
 
-			$args = array(
-				'post_type' => 'pelicula',
-				'posts_per_page' => 5 
-			);
-
-
-			$peliculas = get_posts($args);
-
-				foreach($peliculas as $post): setup_postdata($post);
-				the_title();
-
-
-
-				$term_list = wp_get_post_terms($post->ID, 'mes_vista');
-				foreach ($term_list as $term) {
-					echo $term->name; 
-				}
-
-				$term_list = wp_get_post_terms($post->ID, 'año_vista');
-				foreach ($term_list as $term) {
-					echo $term->name; 
-				}
-
-				$term_list = wp_get_post_terms($post->ID, 'director');
-				foreach ($term_list as $term) {
-					echo $term->name; 
-				}
-
-				$term_list = wp_get_post_terms($post->ID, 'pais');
-				foreach ($term_list as $term) {
-					echo $term->name; 
-				}
-
-				$term_list = wp_get_post_terms($post->ID, 'año');
-				foreach ($term_list as $term) {
-					 echo $term->name;
-				}		
-
-				echo '<br/> <br/>';
-			
-			endforeach;
-			
-
-
-	?>
-</p>
-</div>
+    $query = new WP_Query( $args);           
+    // mostrar cada termino como un h2                
+    echo'<h2>' . $term->name . '</h2>';
+     
+    // mostrar la metadata de cada pelicula como una lista
+    echo '<ul>';
+  
+        // the loop
+        while ( $query->have_posts() ) : $query->the_post(); ?>
+	        <li class="peliculas_lista" id="post-<?php the_ID(); ?>">
+	        	<p>
+		        	<?php the_terms ($post->ID, 'mes_vista'); ?>
+		            <h3><?php the_title(); ?>,</h3>
+		            <?php the_terms ($post->ID, 'director'); ?>.
+					<?php the_terms ($post->ID, 'pais'); ?>
+					(<?php the_terms ($post->ID, 'año'); ?>)
+				</p>
+	        </li>        
+        <?php endwhile;
+     
+    echo '</ul>';
+     
+    wp_reset_postdata();
+ 
+} ?>
 	
-	<?php get_sidebar(); ?>
-	<?php get_footer(); ?>
+<?php get_sidebar(); ?>
+<?php get_footer(); ?>
